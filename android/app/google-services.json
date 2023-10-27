@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "486373971982",
+    "project_id": "mp-doctor-5acdf",
+    "storage_bucket": "mp-doctor-5acdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486373971982:android:a9e84775009592429a445f",
+        "android_client_info": {
+          "package_name": "com.example.mp_doctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486373971982-bol87i6fu11t3ejjng5r0ap4i20des9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFgr2aMgcShdVVQ7sEPdib46ysjHMmFos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486373971982-bol87i6fu11t3ejjng5r0ap4i20des9j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "486373971982-2bqjfqan8modik94r772lg479lkoin50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mpDoctor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

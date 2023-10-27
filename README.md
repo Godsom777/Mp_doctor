@@ -1,6 +1,6 @@
-# mp_doctor
+# Yiatsi
 
-A new Flutter project.
+A new medical Flutter project.
 
 ## Getting Started
 
