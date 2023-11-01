@@ -2,25 +2,28 @@ import 'package:flutter/material.dart';
 
 class SquareTile extends StatelessWidget {
   final String imagePath;
-  const SquareTile({
-    super.key,
-    required this.imagePath,
-  });
+  final VoidCallback? onPressed; // Add an onPressed callback for handling taps
+
+  const SquareTile({super.key, required this.imagePath, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(16),
-        color: Colors.grey[200],
-      ),
-      child: SizedBox(
-        width: 50,
-        child: Image.asset(
-          imagePath,
-          height: 25
+    return InkWell(
+      child: GestureDetector(
+        onTap: () {
+          if (onPressed != null) {
+            onPressed!(); // Trigger the onPressed callback if it's provided
+          }
+        },
+        child: Container(
+          width: 30, // Set the width and height as per your requirements
+          height: 30,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );

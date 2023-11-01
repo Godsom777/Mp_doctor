@@ -106,7 +106,7 @@ class MyApp extends StatelessWidget {
       home: const AuthPage(),
       routes: {
         '/home': (context) => HomePage(),
-        '/signup': (context) => LoginPage(),
+        '/signup': (context) => const LoginPage(),
       },
     );
   }
