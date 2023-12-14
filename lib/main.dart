@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'authentification pages/login_signup_page.dart';
+
 
 //theme Data
 // light Theme
@@ -101,13 +101,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     
       debugShowCheckedModeBanner: false,
       home: const AuthPage(),
       routes: {
-        '/home': (context) => HomePage(),
-        '/signup': (context) => const LoginPage(),
+        '/home': (context) => const FindYourDoctorScreen(),
+        '/signup': (context) => const AuthPage(),
+      
+
       },
     );
   }
 }
+
+// ADD THEME CHANGING TOGGLE BUTTON
