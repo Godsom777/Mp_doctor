@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mp_doctor/authentification%20pages/auth_page.dart';
 import 'package:provider/provider.dart';
 // import 'pages/splash_screen.dart';
 import 'pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+
+
+
+
+
+Color myBgColor = const Color(0xffffffff);
 
 //theme Data
 // light Theme
 final ThemeData lightTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: Colors.white70,
+    scaffoldBackgroundColor: myBgColor,
     primaryColor: Colors.cyan, // Primary Color
     hintColor: Colors.orange, // accent Color
 
     textTheme: ThemeData.light().textTheme.copyWith(
+      
           bodyLarge: const TextStyle(color: Colors.black38),
           bodyMedium: const TextStyle(color: Colors.black38),
           bodySmall: const TextStyle(color: Colors.black38),
@@ -53,6 +62,7 @@ class ThemeProvider with ChangeNotifier {
   }
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////
@@ -67,23 +77,13 @@ class ThemeProvider with ChangeNotifier {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////
-/////////////////////////////////////////
-////////////////////////////////
-/////////////////////////
-/////////////////
-///////////
-//////
-// Change to theme notifier Provider
-
+  await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(ChangeNotifierProvider(
       create: (context) => ThemeProvider(), // Initialize ThemeProvider
       child: const MyApp()));
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -96,12 +96,22 @@ void main() async {
 //////
 
 class MyApp extends StatelessWidget {
+  
   const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+    ThemeData(
+  textTheme: GoogleFonts.oswaldTextTheme(),
+);
+
     return MaterialApp(
+      
+
+
       debugShowCheckedModeBanner: false,
+      
       home: const AuthPage(),
       routes: {
         '/home': (context) => const FindYourDoctorScreen(),
