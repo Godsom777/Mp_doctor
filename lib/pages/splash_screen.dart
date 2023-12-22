@@ -27,10 +27,10 @@ class _SplashScreenState extends State<SplashScreen> {
           .remove(); // Make a network request to check if the user is registered.
       if (isRegistered) {
         // Navigate to the home page.
-        Navigator.pushReplacementNamed(context, '/home');
+       // Navigator.pushReplacementNamed(context, '/home');
       } else {
         // Navigate to the signup screen.
-        Navigator.pushReplacementNamed(context, '/signup');
+       // Navigator.pushReplacementNamed(context, '/signup');
       }
 
       // Remove the splash screen.

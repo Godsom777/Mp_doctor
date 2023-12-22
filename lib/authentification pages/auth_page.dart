@@ -3,7 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mp_doctor/components/my_textfield.dart';
-import 'package:mp_doctor/pages/home_page.dart';
+
+import 'package:mp_doctor/pages/router.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 
@@ -62,7 +63,7 @@ class _MyAuthPageState extends State<AuthPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     void navigateToHomepage(UserCredential userCredential) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => const FindYourDoctorScreen()));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRouter()));
 }
 
     if (_user == null) {
@@ -170,7 +171,7 @@ class _MyAuthPageState extends State<AuthPage> {
         ),
       );
     } else {
-      return const FindYourDoctorScreen();
+      return const MyRouter();
       
       // Scaffold(
       //   appBar: AppBar(

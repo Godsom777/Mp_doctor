@@ -3,17 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:mp_doctor/authentification%20pages/auth_page.dart';
 import 'package:provider/provider.dart';
 // import 'pages/splash_screen.dart';
-import 'pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mp_doctor/pages/router.dart';
 
-
-
-
-
-
-Color myBgColor = const Color(0xffffffff);
+Color myBgColor = const Color(0xFFEFF1EE);
 
 //theme Data
 // light Theme
@@ -23,13 +18,10 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     hintColor: Colors.orange, // accent Color
 
     textTheme: ThemeData.light().textTheme.copyWith(
-      
           bodyLarge: const TextStyle(color: Colors.black38),
           bodyMedium: const TextStyle(color: Colors.black38),
           bodySmall: const TextStyle(color: Colors.black38),
-        ) 
-
-    );
+        ));
 
 // dark theme
 final ThemeData darkTheme = ThemeData.dark().copyWith(
@@ -62,7 +54,6 @@ class ThemeProvider with ChangeNotifier {
   }
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////
@@ -77,13 +68,12 @@ class ThemeProvider with ChangeNotifier {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(ChangeNotifierProvider(
       create: (context) => ThemeProvider(), // Initialize ThemeProvider
       child: const MyApp()));
 }
-
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -96,28 +86,20 @@ void main() async {
 //////
 
 class MyApp extends StatelessWidget {
-  
   const MyApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
     ThemeData(
-  textTheme: GoogleFonts.oswaldTextTheme(),
-);
+      textTheme: GoogleFonts.montserratAlternatesTextTheme(),
+    );
 
     return MaterialApp(
-      
-
-
       debugShowCheckedModeBanner: false,
-      
       home: const AuthPage(),
       routes: {
-        '/home': (context) => const FindYourDoctorScreen(),
+        '/home': (context) => const MyRouter(),
         '/signup': (context) => const AuthPage(),
-      
-
       },
     );
   }

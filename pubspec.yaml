@@ -52,6 +52,7 @@ dependencies:
   firebase_ui_firestore: ^1.5.15
   google_fonts: ^6.1.0
   flutter_phosphor_icons: ^0.0.1+6
+  google_nav_bar: ^5.0.6
  
 
 dev_dependencies:
@@ -92,11 +93,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-  - family: Oswald
-    fonts:
-      - asset: assets/fonts/Oswald-Regular.ttf
-      - asset: assets/fonts/Oswald-Bold.ttf
+ # fonts:
+ # - family: Oswald
+ #   fonts:
+ #     - asset: assets/fonts/Oswald-Regular.ttf
+ #     - asset: assets/fonts/Oswald-Bold.ttf
 
   #   - family: Trajan Pro
   #     fonts:
