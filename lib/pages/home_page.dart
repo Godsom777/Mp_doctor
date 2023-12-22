@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
-
-
-
 class FindYourDoctorScreen extends StatelessWidget {
   const FindYourDoctorScreen({super.key});
 
