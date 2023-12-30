@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^2.0.7
+  flutter_svg: ^1.1.6
   provider: ^6.0.4
   flutter_bloc: ^8.0.0
  # equatable: ^3.3.0
@@ -53,6 +53,8 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_phosphor_icons: ^0.0.1+6
   google_nav_bar: ^5.0.6
+  icon_forest: ^1.1.8 
+  line_awesome_flutter: ^2.0.0
  
 
 dev_dependencies:

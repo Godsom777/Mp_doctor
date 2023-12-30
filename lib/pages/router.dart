@@ -42,7 +42,7 @@ class MyRouter extends StatefulWidget {
 
 class _MyRouterState extends State<MyRouter> {
   int _selectedIndex = 0;
-  static  List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     FindYourDoctorScreen(),
     Calendar(),
     Profile(),
@@ -87,7 +87,7 @@ class _MyRouterState extends State<MyRouter> {
                     ),
                     GButton(
                       icon: CupertinoIcons.chat_bubble_2,
-                      text: 'Inbox',
+                      text: 'Ask',
                       iconColor: logoColor,
                     ),
                     GButton(
