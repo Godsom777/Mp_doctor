@@ -11,7 +11,8 @@ const BoxShadow myShadow = BoxShadow(
 );
 
 const Color myCardColor = Color(0xffFBFDFA); //soft white color
-Color logoColor = const Color(0xff3F3F69); //get the logo color
+Color logoColor = const Color(0xff3F3F69);
+ //get the logo color
 DateTime now = DateTime.now(); // Get current local time
 
 class IconContainerGrid extends StatelessWidget {
@@ -33,14 +34,15 @@ class IconContainerGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return ListView.builder(
       scrollDirection: Axis.vertical,
       physics: const BouncingScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-      ),
+
+      // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //   crossAxisCount: 3,
+      //   crossAxisSpacing: 8.0,
+      //   mainAxisSpacing: 8.0,
+      // ),
       itemCount: containerData.length,
       itemBuilder: (BuildContext context, int index) {
         // Generate a container dynamically based on the data

@@ -5,7 +5,9 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intl/intl.dart';
+import 'package:mp_doctor/components/iconTextCard.dart';
 import 'package:mp_doctor/components/my_card.dart';
+import 'package:mp_doctor/components/user_health_records.dart';
 
 const BoxShadow myShadow = BoxShadow(
   color: Color(0x21A4A1B5),
@@ -41,7 +43,7 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Column(
@@ -163,11 +165,11 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
               ),
 
               Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: SizedBox(
-                    height: height / 1.5,
-                    width: width,
-                    child: IconContainerGrid()),
+                padding: EdgeInsets.all(18.0),
+                child: IconTextCard(
+                  icon: CupertinoIcons.add,
+                  text: 'Emergency',
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -183,7 +185,7 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
   Text h2Text(text, double size, FontWeight weight) {
     return Text(
       text,
-      style: GoogleFonts.notoSansYi(fontSize: size, fontWeight: weight),
+      style: GoogleFonts.koHo(fontSize: size, fontWeight: weight),
     );
   }
 
@@ -195,6 +197,7 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
     );
   }
 }
+
 ////////////////////////////////////////////////////////////////
 ///
 ///////////////////////////////////////////////////////////////

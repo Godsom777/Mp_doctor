@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:mp_doctor/pages/calendar.dart';
+import 'package:mp_doctor/pages/ask_ai.dart';
 import 'package:mp_doctor/pages/home.dart';
-import 'package:mp_doctor/pages/inbox.dart';
+import 'package:mp_doctor/pages/appointments.dart';
 import 'package:mp_doctor/pages/Profile.dart';
 
 const Color myCardColor = Color(0xffFBFDFA);
@@ -21,7 +21,7 @@ class MyRouter extends StatefulWidget {
       style: optionStyle,
     ),
     Text(
-      'Search',
+      'Ask Ai',
       style: optionStyle,
     ),
     Text(
@@ -44,9 +44,9 @@ class _MyRouterState extends State<MyRouter> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     FindYourDoctorScreen(),
-    Calendar(),
+    Ask_Ai(),
     Profile(),
-    Inbox(),
+    Appointment(),
   ];
 
   @override
@@ -86,18 +86,18 @@ class _MyRouterState extends State<MyRouter> {
                       iconColor: logoColor,
                     ),
                     GButton(
-                      icon: CupertinoIcons.chat_bubble_2,
-                      text: 'Ask',
+                      icon: CupertinoIcons.chat_bubble,
+                      text: 'Ask Ai',
                       iconColor: logoColor,
                     ),
                     GButton(
                       icon: CupertinoIcons.person,
-                      text: 'Profile',
+                      text: 'Your Profile',
                       iconColor: logoColor,
                     ),
                     GButton(
                       icon: CupertinoIcons.calendar_today,
-                      text: 'Calendar',
+                      text: 'Appointments',
                       iconColor: logoColor,
                     ),
                   ],
