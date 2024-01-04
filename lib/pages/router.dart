@@ -69,9 +69,11 @@ class _MyRouterState extends State<MyRouter> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
                 child: GNav(
+                  textStyle: GoogleFonts.koHo(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                   rippleColor: Colors.grey[300]!,
                   hoverColor: Colors.grey[100]!,
-                  gap: 7,
+                  gap: 5,
                   activeColor: logoColor,
                   iconSize: 26,
                   padding:
@@ -86,18 +88,18 @@ class _MyRouterState extends State<MyRouter> {
                       iconColor: logoColor,
                     ),
                     GButton(
-                      icon: CupertinoIcons.chat_bubble,
-                      text: 'Ask Ai',
+                      icon: CupertinoIcons.chat_bubble_2,
+                      text: 'Yiatsi',
                       iconColor: logoColor,
                     ),
                     GButton(
                       icon: CupertinoIcons.person,
-                      text: 'Your Profile',
+                      text: 'Profile',
                       iconColor: logoColor,
                     ),
                     GButton(
                       icon: CupertinoIcons.calendar_today,
-                      text: 'Appointments',
+                      text: 'Calendar',
                       iconColor: logoColor,
                     ),
                   ],

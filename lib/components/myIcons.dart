@@ -14,7 +14,7 @@ class myIcon extends StatelessWidget {
   final  IconData icon;
    final double size;
   final  Color color;
-   myIcon({
+   const myIcon({
 
   
     super.key,
@@ -28,7 +28,7 @@ class myIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          boxShadow: [myShadow],
+          boxShadow: const [myShadow],
           color: color.withOpacity(0.2),
           borderRadius: const BorderRadius.all(Radius.circular(8))),
       height: 70,

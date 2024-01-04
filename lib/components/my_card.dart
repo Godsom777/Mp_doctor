@@ -12,7 +12,7 @@ const BoxShadow myShadow = BoxShadow(
 
 const Color myCardColor = Color(0xffFBFDFA); //soft white color
 Color logoColor = const Color(0xff3F3F69);
- //get the logo color
+//get the logo color
 DateTime now = DateTime.now(); // Get current local time
 
 class IconContainerGrid extends StatelessWidget {
@@ -72,6 +72,6 @@ class IconContainerGrid extends StatelessWidget {
 Text h2Text(text, double size, FontWeight weight) {
   return Text(
     text,
-    style: GoogleFonts.notoSansYi(fontSize: size, fontWeight: weight),
+    style: GoogleFonts.koHo(fontSize: size, fontWeight: weight),
   );
 }

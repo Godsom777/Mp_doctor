@@ -5,9 +5,13 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intl/intl.dart';
+import 'package:mp_doctor/components/carousel.dart';
 import 'package:mp_doctor/components/iconTextCard.dart';
 import 'package:mp_doctor/components/my_card.dart';
 import 'package:mp_doctor/components/user_health_records.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+import '../components/bigCard.dart';
 
 const BoxShadow myShadow = BoxShadow(
   color: Color(0x21A4A1B5),
@@ -70,85 +74,9 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
                   ],
                 ),
               ),
-              ////////////////////////// the first card//////////////////////////
-              Container(
-                width: width - 20,
-                height: 200,
-                decoration: BoxDecoration(
-                  image: const DecorationImage(
-                      image: AssetImage('assets/yatsi(logo).png'),
-                      fit: BoxFit.fitHeight,
-                      alignment: Alignment.bottomRight,
-                      opacity: 0.04),
-                  color: myCardColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.04),
-                      spreadRadius: 5,
-                      blurRadius: 10,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image(
-                          image: AssetImage('assets/yatsi(logo).png'),
-                          width: 120,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 20.0,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Chisom E.O.',
-                                style: GoogleFonts.notoSansYi(
-                                    fontSize: 27,
-                                    fontWeight: FontWeight.w900,
-                                    color: logoColor),
-                              ),
-                              Text(
-                                'Member Since 2023',
-                                style: GoogleFonts.notoSansYi(
-                                    fontSize: 12,
-                                    color:
-                                        const Color.fromARGB(255, 5, 18, 43)),
-                              ),
-                              Text.rich(
-                                TextSpan(
-                                    text: 'Go ',
-                                    style: GoogleFonts.notoSansYi(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: logoColor),
-                                    children: const [
-                                      TextSpan(
-                                          text: "Premium ",
-                                          style: TextStyle(color: Colors.red)),
-                                      TextSpan(
-                                          text: "to access all the features")
-                                    ]),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              ////////////////////////// carousel //////////////////////////
+              MyCarousel(),
+              /////////////////////////////////////////////////////////////
               const SizedBox(
                 height: 20,
               ),
@@ -158,23 +86,69 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    h2Text('Specialties', 20, FontWeight.normal),
-                    const Icon(CupertinoIcons.sort_down)
+                    h2Text(
+                      'Specialties',
+                      20,
+                      FontWeight.w500,
+                    ),
+                    const Icon(CupertinoIcons.sort_down_circle)
                   ],
                 ),
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(18.0),
-                child: IconTextCard(
-                  icon: CupertinoIcons.add,
-                  text: 'Emergency',
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconTextCard(
+                          img: AssetImage('assets/emergency.png'),
+                          text: 'Emergency',
+                          text2: 'Quick Response',
+                        ),
+                        IconTextCard(
+                          img: AssetImage('assets/doctor.png'),
+                          text: 'Consult',
+                          text2: 'Symptom Checker',
+                        ),
+                        IconTextCard(
+                          img: AssetImage('assets/health.png'),
+                          text: 'Heart',
+                          text2: 'Heart Rate Dictector',
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconTextCard(
+                          img: AssetImage('assets/advice.png'),
+                          text: 'Seek Advice',
+                          text2: 'General Tips',
+                        ),
+                        IconTextCard(
+                          img: AssetImage('assets/chatbot (1).png'),
+                          text: 'ChatBot',
+                          text2: 'Chat with Yiatsi Ai',
+                        ),
+                        IconTextCard(
+                          img: AssetImage('assets/tablets.png'),
+                          text: 'Prescription',
+                          text2: 'Check dosage',
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              /////////////////////////////////////////////////
+              
             ],
           ),
         ),
@@ -192,7 +166,7 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
   Text headerText(text) {
     return Text(
       text,
-      style: GoogleFonts.notoSansYi(
+      style: GoogleFonts.aBeeZee(
           fontSize: 32, fontWeight: FontWeight.normal, color: logoColor),
     );
   }
@@ -201,37 +175,3 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
 ////////////////////////////////////////////////////////////////
 ///
 ///////////////////////////////////////////////////////////////
-
-class BookAppointmentScreen extends StatelessWidget {
-  const BookAppointmentScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Book Appointment'),
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Book an appointment with Dr. Anthony Smith',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Book Now'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

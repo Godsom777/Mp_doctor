@@ -55,6 +55,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   icon_forest: ^1.1.8 
   line_awesome_flutter: ^2.0.0
+  carousel_slider: ^4.2.1
  
 
 dev_dependencies:
