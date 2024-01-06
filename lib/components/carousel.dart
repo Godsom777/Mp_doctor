@@ -10,13 +10,13 @@ class MyCarousel extends StatelessWidget {
     return CarouselSlider(
       options: CarouselOptions(
         height: 200.0,
-        enlargeCenterPage: true,
+        enlargeCenterPage: false,
         autoPlay: false,
         aspectRatio: 16 / 9,
         autoPlayCurve: Curves.decelerate,
         enableInfiniteScroll: true,
-        autoPlayAnimationDuration: const Duration(milliseconds: 4800),
-        viewportFraction: 1,
+        autoPlayAnimationDuration: const Duration(milliseconds: 600),
+        viewportFraction: 0.9,
       ),
       items: cards,
     );

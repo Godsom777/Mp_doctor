@@ -16,14 +16,15 @@ class IconTextCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      splashColor: Color.fromARGB(26, 69, 69, 69),
+      splashColor: Color.fromARGB(255, 215, 90, 96),
       focusColor: myCardColor,
       highlightColor: myCardColor,
       borderRadius: const BorderRadius.all(Radius.circular(8)),
       child: Container(
         decoration: BoxDecoration(
           // boxShadow: const [myShadow],
-          color: Colors.white.withOpacity(0.5),
+          color: myCardColor,
+
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         height: 120,
@@ -31,9 +32,23 @@ class IconTextCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              image: img,
-              width: 56,
+            Container(
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(31, 126, 118, 169),
+                    blurRadius: 5,
+                    offset: Offset(0, 10),
+                    spreadRadius: 1,
+                  )
+                ],
+                color: Colors.white54,
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+              child: Image(
+                image: img,
+                width: 56,
+              ),
             ),
             h2Text(text, 18, FontWeight.w500),
             Divider(

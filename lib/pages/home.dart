@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,30 +54,19 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  right: 30.0,
-                  left: 20.0,
-                  top: 50,
-                  bottom: 20,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    headerText('Welcome'),
-                    Column(
-                      children: [
-                        const Icon(CupertinoIcons.calendar_circle),
-                        Text('Today is $formattedDate'),
-                      ],
-                    ),
-
-                    //  Image( image: AssetImage('assets/yatsi(logo).png'),width: 120,),
-                  ],
-                ),
-              ),
               ////////////////////////// carousel //////////////////////////
-              MyCarousel(),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Stack(children: [
+                  Image(
+                    image: AssetImage('assets/yatsi(logo).png'),
+                    width: 200,
+                  ),
+                  BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 15),
+                      child: SizedBox(height: height / 3, child: MyCarousel())),
+                ]),
+              ),
               /////////////////////////////////////////////////////////////
               const SizedBox(
                 height: 20,
@@ -83,20 +74,28 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
 
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Icon(CupertinoIcons.slowmo),
                     h2Text(
-                      'Specialties',
-                      20,
-                      FontWeight.w500,
+                      'Quick Services',
+                      22,
+                      FontWeight.bold,
                     ),
-                    const Icon(CupertinoIcons.sort_down_circle)
+                    h2Text('Access important services quickly', 14,
+                        FontWeight.normal),
+                    Divider(
+                      endIndent: 80,
+                      indent: 80,
+                      height: 1,
+                      color: logoColor.withOpacity(0.25),
+                    ),
                   ],
                 ),
               ),
 
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(18.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,13 +141,57 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 15),
+                    SizedBox(height: 15),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(CupertinoIcons.arrow_down_right_arrow_up_left),
+                          h2Text(
+                            'Specialties',
+                            22,
+                            FontWeight.bold,
+                          ),
+                          h2Text('Access specific specialty', 14,
+                              FontWeight.normal),
+                        ],
+                      ),
+                    ),
+                    Divider(
+                      endIndent: 80,
+                      indent: 80,
+                      height: 1,
+                      color: logoColor.withOpacity(0.25),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconTextCard(
+                          img: AssetImage('assets/advice.png'),
+                          text: 'Seek Advice',
+                          text2: 'General Tips',
+                        ),
+                        IconTextCard(
+                          img: AssetImage('assets/chatbot (1).png'),
+                          text: 'ChatBot',
+                          text2: 'Chat with Yiatsi Ai',
+                        ),
+                        IconTextCard(
+                          img: AssetImage('assets/tablets.png'),
+                          text: 'Prescription',
+                          text2: 'Check dosage',
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              
             ],
           ),
         ),
