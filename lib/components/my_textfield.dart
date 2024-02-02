@@ -1,38 +1,56 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final bool obscureText;
+class ChatInputBox extends StatelessWidget {
+  final TextEditingController? controller;
+  final VoidCallback? onSend, onClickCamera;
 
-  const MyTextField({
-    Key? key,
-    required this.controller,
-    required this.hintText,
-    required this.obscureText,
-  }) : super(key: key);
+  const ChatInputBox({
+    super.key,
+    this.controller,
+    this.onSend,
+    this.onClickCamera,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
-         controller: controller,
-         obscureText: obscureText,
-        decoration: InputDecoration(
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
+    return Card(
+      margin: const EdgeInsets.all(8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          if (onClickCamera != null)
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: IconButton(
+                  onPressed: onClickCamera,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                  icon: const Icon(Icons.file_copy_rounded)),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade400),
+          Expanded(
+              child: TextField(
+            controller: controller,
+            minLines: 1,
+            maxLines: 6,
+            cursorColor: Theme.of(context).colorScheme.inversePrimary,
+            textInputAction: TextInputAction.newline,
+            keyboardType: TextInputType.multiline,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 18),
+              hintText: 'Message',
+              border: InputBorder.none,
             ),
-            fillColor: Colors.grey.shade200,
-            filled: true,
-           // hintText: hintText,
-            hintStyle: TextStyle(color: Colors.grey[500])),
+            onTapOutside: (event) =>
+                FocusManager.instance.primaryFocus?.unfocus(),
+          )),
+          Padding(
+            padding: const EdgeInsets.all(4),
+            child: FloatingActionButton.small(
+              onPressed: onSend,
+              child: const Icon(Icons.send_rounded),
+            ),
+          )
+        ],
       ),
     );
   }
 }
-

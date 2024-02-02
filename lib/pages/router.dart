@@ -8,31 +8,18 @@ import 'package:mp_doctor/pages/ask_ai.dart';
 import 'package:mp_doctor/pages/home.dart';
 import 'package:mp_doctor/pages/appointments.dart';
 import 'package:mp_doctor/pages/Profile.dart';
+import 'package:provider/provider.dart';
 
-const Color myCardColor = Color(0xffFBFDFA);
-Color logoColor = const Color(0xff3F3F69);
+import '../main.dart';
+
+// const Color myCardColor = Color(0xffFBFDFA);
+// Color logoColor = const Color(0xff3F3F69);
 
 class MyRouter extends StatefulWidget {
-  static TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w400, color: logoColor);
-  static final List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Ask Ai',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-    Text(
-      'Calendar',
-      style: optionStyle,
-    ),
-  ];
+  static TextStyle optionStyle = const TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.w400,
+  );
 
   const MyRouter({super.key});
 
@@ -42,28 +29,24 @@ class MyRouter extends StatefulWidget {
 
 class _MyRouterState extends State<MyRouter> {
   int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    FindYourDoctorScreen(),
-    Ask_Ai(),
-    Profile(),
-    Appointment(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const FindYourDoctorScreen(),
+    const SectionChat(),
+    const Profile(),
+    const Appointment(),
   ];
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
 
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Container(
-            decoration: const BoxDecoration(color: myCardColor, boxShadow: [
-              BoxShadow(
-                blurRadius: 15,
-                spreadRadius: -5,
-                color: Color.fromRGBO(50, 50, 50, 0.2),
-              )
-            ]),
+            height: width > height ? height / 6 : height / 12,
+            color: provider.cardColor.withOpacity(.8),
             child: SafeArea(
               child: Padding(
                 padding:
@@ -73,34 +56,28 @@ class _MyRouterState extends State<MyRouter> {
                       fontSize: 16, fontWeight: FontWeight.bold),
                   rippleColor: Colors.grey[300]!,
                   hoverColor: Colors.grey[100]!,
-                  gap: 5,
-                  activeColor: logoColor,
+                  gap: 3,
+                  activeColor: provider.mylogoColor,
                   iconSize: 26,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   duration: const Duration(milliseconds: 400),
-                  tabBackgroundColor: Colors.grey[100]!,
-                  color: logoColor,
+                  tabBackgroundColor: provider.mytabBackgroundColor,
                   tabs: [
                     GButton(
                       icon: CupertinoIcons.home,
                       text: 'Home',
-                      iconColor: logoColor,
+                      iconColor: provider.mylogoColor,
                     ),
                     GButton(
                       icon: CupertinoIcons.chat_bubble_2,
                       text: 'Yiatsi',
-                      iconColor: logoColor,
+                      iconColor: provider.mylogoColor,
                     ),
                     GButton(
                       icon: CupertinoIcons.person,
-                      text: 'Profile',
-                      iconColor: logoColor,
-                    ),
-                    GButton(
-                      icon: CupertinoIcons.calendar_today,
-                      text: 'Calendar',
-                      iconColor: logoColor,
+                      text: 'Emergency',
+                      iconColor: provider.mylogoColor,
                     ),
                   ],
                   selectedIndex: _selectedIndex,
@@ -112,7 +89,8 @@ class _MyRouterState extends State<MyRouter> {
                 ),
               ),
             )),
-        backgroundColor: const Color(0xFFEFF1EE),
+        // backgroundColor: Colors.red,
+        // const Color(0xFFEFF1EE),
         resizeToAvoidBottomInset: true,
         body: _widgetOptions.elementAt(_selectedIndex),
       ),

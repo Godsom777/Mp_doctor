@@ -19,7 +19,7 @@ class _DoctorSignUpWidgetState extends State<DoctorSignUpWidget> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      // TODO: Sign up the doctor
+      // TODO: sign up the doctor
     }
   }
 

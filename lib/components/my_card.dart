@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:mp_doctor/main.dart';
+import 'package:provider/provider.dart';
 
 const BoxShadow myShadow = BoxShadow(
   color: Color.fromARGB(31, 146, 139, 188),
@@ -10,8 +12,6 @@ const BoxShadow myShadow = BoxShadow(
   spreadRadius: 0,
 );
 
-const Color myCardColor = Color(0xffFBFDFA); //soft white color
-Color logoColor = const Color(0xff3F3F69);
 //get the logo color
 DateTime now = DateTime.now(); // Get current local time
 
@@ -34,6 +34,7 @@ class IconContainerGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
     return ListView.builder(
       scrollDirection: Axis.vertical,
       physics: const BouncingScrollPhysics(),
@@ -47,8 +48,8 @@ class IconContainerGrid extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         // Generate a container dynamically based on the data
         return Container(
-          decoration: const BoxDecoration(
-              color: myCardColor,
+          decoration: BoxDecoration(
+              color: provider.cardColor,
               boxShadow: [myShadow],
               borderRadius: BorderRadius.all(Radius.circular(20))),
           child: Center(
@@ -57,9 +58,10 @@ class IconContainerGrid extends StatelessWidget {
               children: [
                 Icon(
                   containerData[index]['icon'],
-                  color: logoColor,
+                  color: provider.mylogoColor,
                 ),
-                h2Text(containerData[index]['text'], 14, FontWeight.normal)
+                h2Text(containerData[index]['text'], 14, FontWeight.normal,
+                    color: provider.mylogoColor)
               ],
             ),
           ),
@@ -69,7 +71,7 @@ class IconContainerGrid extends StatelessWidget {
   }
 }
 
-Text h2Text(text, double size, FontWeight weight) {
+Text h2Text(text, double size, FontWeight weight, {required color}) {
   return Text(
     text,
     style: GoogleFonts.koHo(fontSize: size, fontWeight: weight),

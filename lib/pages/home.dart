@@ -12,18 +12,20 @@ import 'package:mp_doctor/components/iconTextCard.dart';
 import 'package:mp_doctor/components/my_card.dart';
 import 'package:mp_doctor/components/user_health_records.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
 
 import '../components/bigCard.dart';
+import '../main.dart';
 
 const BoxShadow myShadow = BoxShadow(
-  color: Color(0x21A4A1B5),
   blurRadius: 22.60,
   offset: Offset(0, 23),
   spreadRadius: 0,
 );
 
-const Color myCardColor = Color(0xffFBFDFA); //soft white color
-Color logoColor = const Color(0xff3F3F69); //get the logo color
+// const Color myCardColor = Color(0xffFBFDFA); //soft white color
+
+// Color logoColor = const Color(0xff3F3F69); //get the logo color
 DateTime now = DateTime.now(); // Get current local time
 
 // TODO: get the _current user's name
@@ -44,32 +46,42 @@ class FindYourDoctorScreen extends StatefulWidget {
 class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
   @override
   Widget build(BuildContext context) {
+    ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-        resizeToAvoidBottomInset: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        //const Color.fromARGB(255, 245, 245, 245),
+        resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Row(children: [Icon(CupertinoIcons.app)]),
               ////////////////////////// carousel //////////////////////////
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 16.0),
                 child: Stack(children: [
-                  Image(
-                    image: AssetImage('assets/yatsi(logo).png'),
-                    width: 200,
+                  const SizedBox(
+                    child: Image(
+                      image: AssetImage('assets/yatsi(logo).png'),
+                      width: 200,
+                    ),
                   ),
-                  BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 15),
-                      child: SizedBox(height: height / 3, child: MyCarousel())),
+                  SizedBox(
+                    height: width > height ? 300 : 250,
+                    child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 15),
+                        child: MyCarousel()),
+                  ),
                 ]),
               ),
               /////////////////////////////////////////////////////////////
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               Padding(
@@ -77,112 +89,141 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(CupertinoIcons.slowmo),
+                    GestureDetector(
+                        onLongPress: () {
+                          Provider.of<ThemeProvider>(context, listen: false)
+                              .toggleTheme();
+                        },
+                        child: const Icon(CupertinoIcons.slowmo)),
                     h2Text(
                       'Quick Services',
                       22,
                       FontWeight.bold,
                     ),
-                    h2Text('Access important services quickly', 14,
-                        FontWeight.normal),
+                    const Text('Access important services quickly',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.redAccent)),
                     Divider(
                       endIndent: 80,
                       indent: 80,
                       height: 1,
-                      color: logoColor.withOpacity(0.25),
+                      color: provider.mylogoColor.withOpacity(0.5),
                     ),
                   ],
                 ),
               ),
 
               Padding(
-                padding: EdgeInsets.all(18.0),
+                padding: const EdgeInsets.only(left: 20.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconTextCard(
-                          img: AssetImage('assets/emergency.png'),
-                          text: 'Emergency',
-                          text2: 'Quick Response',
-                        ),
-                        IconTextCard(
-                          img: AssetImage('assets/doctor.png'),
-                          text: 'Consult',
-                          text2: 'Symptom Checker',
-                        ),
-                        IconTextCard(
-                          img: AssetImage('assets/health.png'),
-                          text: 'Heart',
-                          text2: 'Heart Rate Dictector',
-                        ),
-                      ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconTextCard(
+                            img: const AssetImage('assets/emergency.png'),
+                            text: 'Emergency',
+                            text2: 'Quick Response',
+                            onTap: () {
+                              // Add your code here for handling the Emergency card tap
+                            },
+                          ),
+                          IconTextCard(
+                            img: const AssetImage('assets/doctor.png'),
+                            text: 'Consult',
+                            text2: 'Symptom Checker',
+                            onTap: () {
+                              // Add your code here for handling the Consult card tap
+                            },
+                          ),
+                          IconTextCard(
+                            img: const AssetImage('assets/chatbot (1).png'),
+                            text: 'ChatBot',
+                            text2: 'Chat with Yiatsi Ai',
+                            onTap: () {
+                              // Add your code here for handling the ChatBot card tap
+                            },
+                          ),
+                          IconTextCard(
+                            img: const AssetImage('assets/tablets.png'),
+                            text: 'Prescription',
+                            text2: 'Check dosage',
+                            onTap: () {
+                              // Add your code here for handling the Prescription card tap
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconTextCard(
-                          img: AssetImage('assets/advice.png'),
-                          text: 'Seek Advice',
-                          text2: 'General Tips',
-                        ),
-                        IconTextCard(
-                          img: AssetImage('assets/chatbot (1).png'),
-                          text: 'ChatBot',
-                          text2: 'Chat with Yiatsi Ai',
-                        ),
-                        IconTextCard(
-                          img: AssetImage('assets/tablets.png'),
-                          text: 'Prescription',
-                          text2: 'Check dosage',
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    SizedBox(height: 15),
-                    Padding(
+
+                    const SizedBox(height: 10),
+
+                    ///
+                    ///////////////////SPECIALTIES////////////////////////////////
+                    ///
+                    ///
+                    const SizedBox(height: 30),
+                    const Padding(
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(CupertinoIcons.arrow_down_right_arrow_up_left),
-                          h2Text(
-                            'Specialties',
-                            22,
-                            FontWeight.bold,
+                          Image(
+                            image: AssetImage('assets/specialties.png'),
+                            width: 100,
                           ),
-                          h2Text('Access specific specialty', 14,
-                              FontWeight.normal),
+                          Text(
+                            'Specialties',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text('Access Specific specialty',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.redAccent)),
                         ],
                       ),
                     ),
                     Divider(
-                      endIndent: 80,
-                      indent: 80,
-                      height: 1,
-                      color: logoColor.withOpacity(0.25),
-                    ),
-                    SizedBox(height: 10),
+                        endIndent: 80,
+                        indent: 80,
+                        height: 1,
+                        color: provider.mylogoColor.withOpacity(0.5)),
+                    const SizedBox(height: 20),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconTextCard(
-                          img: AssetImage('assets/advice.png'),
-                          text: 'Seek Advice',
-                          text2: 'General Tips',
+                          img: const AssetImage('assets/advice.png'),
+                          text: 'Heart',
+                          text2: 'Cardiologists',
+                          onTap: () {
+                            // Add your code here for handling the Heart card tap
+                          },
                         ),
                         IconTextCard(
-                          img: AssetImage('assets/chatbot (1).png'),
+                          img: const AssetImage('assets/chatbot (1).png'),
                           text: 'ChatBot',
                           text2: 'Chat with Yiatsi Ai',
+                          onTap: () {
+                            // Add your code here for handling the ChatBot card tap
+                          },
                         ),
                         IconTextCard(
-                          img: AssetImage('assets/tablets.png'),
+                          img: const AssetImage('assets/tablets.png'),
                           text: 'Prescription',
                           text2: 'Check dosage',
+                          onTap: () {
+                            // Add your code here for handling the Prescription card tap
+                          },
                         ),
                       ],
                     ),
@@ -210,7 +251,9 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
     return Text(
       text,
       style: GoogleFonts.aBeeZee(
-          fontSize: 32, fontWeight: FontWeight.normal, color: logoColor),
+          fontSize: 32,
+          fontWeight: FontWeight.normal,
+          color: const Color(0xff3F3F69)),
     );
   }
 }
@@ -218,3 +261,4 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
 ////////////////////////////////////////////////////////////////
 ///
 ///////////////////////////////////////////////////////////////
+

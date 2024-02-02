@@ -10,11 +10,28 @@ class Profile extends StatelessWidget {
     return Container(
       color: Colors.yellow,
       child: Center(
-        child: InkWell(
-          onTap: () async => await FirebaseAuth.instance.signOut(),
-          child: Text('LogOut'),
+        child: Column(
+          children: [
+           const Text(
+              'Tap & Hold For More Emergency Features',
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            
+            InkWell(
+              onTap: () async => await FirebaseAuth.instance.signOut(),
+              child: Text('LogOut'),
+            ),
+            CircleAvatar(
+             radius: Checkbox.width,
+            )
+          ],
         ),
       ),
     );
   }
 }
+
+

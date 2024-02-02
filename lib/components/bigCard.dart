@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mp_doctor/components/my_button.dart';
+import 'package:mp_doctor/main.dart';
 import 'package:mp_doctor/pages/router.dart';
+import 'package:provider/provider.dart';
 
 const BoxShadow myShadow = BoxShadow(
-  color: Color(0x21A4A1B5),
   blurRadius: 22.60,
   offset: Offset(0, 23),
   spreadRadius: 0,
 );
 
-LinearGradient dualGradient = LinearGradient(
-    colors: [logoColor, Colors.red],
-    stops: const [10, 20],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight);
+LinearGradient dualGradient = const LinearGradient(
+    colors: [Color(0xff3F3F69), Color.fromARGB(255, 128, 142, 177)],
+    stops: [0.15, 0.95],
+    begin: Alignment.bottomRight,
+    end: Alignment.topLeft);
 
 class Slide1 extends StatelessWidget {
   const Slide1({
@@ -23,22 +25,23 @@ class Slide1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider provider = Provider.of<ThemeProvider>(context, listen: false);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      width: width - 50,
-      height: 200,
+      width: width,
+      height: width > height ? 250 : 200,
       decoration: BoxDecoration(
-        image: const DecorationImage(
-            image: AssetImage('assets/yatsi(logo).png'),
+        image: DecorationImage(
+            image: AssetImage(provider.mylogoImage),
             fit: BoxFit.fitHeight,
             alignment: Alignment.bottomRight,
             opacity: 0.04),
-        color: myCardColor.withOpacity(.5),
+        color: provider.cardColor.withOpacity(.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.04),
+            color: provider.shadowColor,
             spreadRadius: 5,
             blurRadius: 10,
             offset: const Offset(0, 10),
@@ -48,11 +51,11 @@ class Slide1 extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image(
-                image: AssetImage('assets/yatsi(logo).png'),
+                image: AssetImage(provider.mylogoImage),
                 width: 120,
               ),
             ],
@@ -72,13 +75,12 @@ class Slide1 extends StatelessWidget {
                       style: GoogleFonts.notoSansYi(
                           fontSize: 27,
                           fontWeight: FontWeight.w900,
-                          color: logoColor),
+                          color: provider.mylogoColor),
                     ),
                     Text(
                       'Member Since 2023',
                       style: GoogleFonts.notoSansYi(
-                          fontSize: 12,
-                          color: const Color.fromARGB(255, 5, 18, 43)),
+                          fontSize: 12, color: provider.mylogoColor),
                     ),
                     Text.rich(
                       TextSpan(
@@ -86,7 +88,7 @@ class Slide1 extends StatelessWidget {
                           style: GoogleFonts.notoSansYi(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
-                              color: logoColor),
+                              color: provider.mylogoColor),
                           children: const [
                             TextSpan(
                                 text: "Premium ",
@@ -116,17 +118,18 @@ class _Slide2State extends State<Slide2> {
   bool isEyeClosed = false;
   @override
   Widget build(BuildContext context) {
+    ThemeProvider provider = Provider.of(context, listen: false);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: width - 20,
+      width: width,
       height: 200,
       decoration: BoxDecoration(
         gradient: dualGradient,
-        color: logoColor.withOpacity(0.5),
+        color: const Color(0xff3F3F69).withOpacity(0.8),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
+            color: provider.shadowColor,
             spreadRadius: 5,
             blurRadius: 10,
             offset: const Offset(0, 10),
@@ -136,7 +139,7 @@ class _Slide2State extends State<Slide2> {
       ),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -148,19 +151,20 @@ class _Slide2State extends State<Slide2> {
                     },
                     child: Column(
                       children: [
-                        h2Text('Okoro\'s Stats  >', 20, FontWeight.w500),
+                        h2Text('Aluka\'s Stats  >', 20, FontWeight.bold),
                         Divider(
                           endIndent: 80,
                           indent: 80,
                           height: 1,
                           color: Colors.white.withOpacity(0.25),
                         ),
-                        h2Text(' Your easy quick stats', 12, FontWeight.normal),
+                        h2Text('Last Update: 2 days ago', 12, FontWeight.w500)
                       ],
                     )),
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              const Flex(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                direction: Axis.horizontal,
                 children: [
                   IconWithText(
                     img: AssetImage('assets/blood-pressure.png'),
@@ -184,9 +188,15 @@ class _Slide2State extends State<Slide2> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: h2Text('Allergies   >', 16, FontWeight.w500),
+              Column(
+                children: [
+                  MyButton(
+                    onTap: () {},
+                    text: "Update >",
+                  ),
+
+                  // h2Text('Update >', 16, FontWeight.w500),
+                ],
               )
             ],
           ),
@@ -210,20 +220,28 @@ class IconWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(boxShadow: [myShadow]),
-      child: Column(
-        children: [
-          Image(
-            image: img,
-            width: 50,
-          ),
-          h2Text(text, 18, FontWeight.bold),
-          h2Text(text2, 12, FontWeight.normal)
-        ],
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.white.withOpacity(.25), width: .8),
+          borderRadius: const BorderRadius.all(Radius.circular(10))),
+      // decoration: const BoxDecoration(
+      //   boxShadow: [myShadow]),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Image(
+              image: img,
+              width: 35,
+            ),
+            h2Text(text, 16, FontWeight.bold),
+            h2Text(text2, 12, FontWeight.normal)
+          ],
+        ),
       ),
     );
   }
 }
+////////////////////////////////////////////////////
 
 Text h2Text(text, double size, FontWeight weight) {
   return Text(
